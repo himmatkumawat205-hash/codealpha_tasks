@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3ee">
+  <meta name="description" content="A little clarity for everyday numbers. Calculate with live results, keyboard shortcuts, and a handy recent history.">
+  <title>Sum — Everyday Calculator</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script src="calculator.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#page-title" aria-label="Sum calculator home"><span class="brand-mark" aria-hidden="true">=</span>sum<span class="brand-dot">.</span></a>
+      <span class="header-note">A LITTLE CLARITY, EVERY DAY</span>
+      <button class="shortcut-button" id="show-shortcuts" aria-label="Show keyboard shortcuts"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M6 10h2m3 0h2m3 0h2M6 14h2m3 0h7"/></svg><span>Shortcuts</span></button>
+    </header>
+    <main>
+      <section class="intro" aria-labelledby="page-title">
+        <p class="eyebrow"><span></span> THE EVERYDAY CALCULATOR</p>
+        <h1 id="page-title">Make it add up<span>.</span></h1>
+        <p class="intro-description">For the little things. And the numbers behind the big ones.</p>
+      </section>
+      <div class="workspace">
+        <section class="calculator" aria-label="Calculator">
+          <div class="display">
+            <div class="display-top"><span class="result-state" id="result-state"><i></i> READY WHEN YOU ARE</span><button id="copy-result" class="copy-button" aria-label="Copy result" title="Copy result"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="8" y="8" width="11" height="12" rx="2"/><path d="M15 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h3"/></svg></button></div>
+            <div class="expression" id="expression" aria-label="Expression">Start with a number</div>
+            <output class="result" id="result" aria-label="Result" aria-live="polite" aria-atomic="true">0</output>
+          </div>
+          <div class="keypad" aria-label="Calculator keypad">
+            <button class="key key-clear" data-action="clear" title="Clear (Escape)">AC</button>
+            <button class="key key-function" data-action="sign" aria-label="Toggle positive or negative">+/−</button>
+            <button class="key key-function" data-action="percent" aria-label="Percent">%</button>
+            <button class="key key-operator" data-operator="/" aria-label="Divide">÷</button>
+            <button class="key" data-digit="7">7</button><button class="key" data-digit="8">8</button><button class="key" data-digit="9">9</button><button class="key key-operator" data-operator="*" aria-label="Multiply">×</button>
+            <button class="key" data-digit="4">4</button><button class="key" data-digit="5">5</button><button class="key" data-digit="6">6</button><button class="key key-operator" data-operator="-" aria-label="Subtract">−</button>
+            <button class="key" data-digit="1">1</button><button class="key" data-digit="2">2</button><button class="key" data-digit="3">3</button><button class="key key-operator" data-operator="+" aria-label="Add">+</button>
+            <button class="key key-backspace" data-action="backspace" aria-label="Delete last character" title="Delete (Backspace)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5h10a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H9l-7-7 7-7Z"/><path d="m12 9 6 6m0-6-6 6"/></svg></button><button class="key" data-digit="0">0</button><button class="key" data-digit="."><span aria-hidden="true">.</span><span class="sr-only">Decimal point</span></button><button class="key key-equals" data-action="equals" aria-label="Equals">=</button>
+          </div>
+          <div class="calculator-foot"><span class="little-dot"></span> A clear head starts with clear numbers.</div>
+        </section>
+        <aside class="history-panel" aria-labelledby="history-heading">
+          <div class="history-header"><h2 id="history-heading">Recent calculations <span id="history-count">00</span></h2><button id="clear-history" class="text-button" disabled>Clear</button></div>
+          <div class="history-content" id="history-content">
+            <div class="empty-history"><div class="history-icon" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 12h20M10 20h20M10 28h12"/><circle cx="30" cy="28" r="4"/></svg></div><h3>A fresh start.</h3><p>Your finished calculations will appear here.<br>Tap any result to use it again.</p></div>
+          </div>
+          <div class="side-note"><span class="note-mark" aria-hidden="true">✳</span><div><h3>Less clicking. More calculating.</h3><p>Use your keyboard to type numbers and operators. Press <kbd>Enter</kbd> for the answer.</p></div></div>
+        </aside>
+      </div>
+      <div class="bottom-note"><span>+ &nbsp; − &nbsp; × &nbsp; ÷</span><p>Simple by design. Useful by nature.</p></div>
+    </main>
+    <footer class="site-footer"><span>SUM / EVERYDAY TOOLS</span><span>One calculation at a time.</span></footer>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <dialog id="shortcuts-dialog" aria-labelledby="shortcut-title"><div class="dialog-heading"><h2 id="shortcut-title">At your fingertips.</h2><button id="close-shortcuts" aria-label="Close keyboard shortcuts">×</button></div><p>A few shortcuts to keep things moving.</p><dl><div><dt>Numbers & decimal</dt><dd><kbd>0–9</kbd> <kbd>.</kbd></dd></div><div><dt>Arithmetic</dt><dd><kbd>+</kbd> <kbd>−</kbd> <kbd>*</kbd> <kbd>/</kbd></dd></div><div><dt>Calculate</dt><dd><kbd>Enter</kbd> or <kbd>=</kbd></dd></div><div><dt>Delete one character</dt><dd><kbd>Backspace</kbd></dd></div><div><dt>Clear calculation</dt><dd><kbd>Esc</kbd> or <kbd>Delete</kbd></dd></div><div><dt>Percent / change sign</dt><dd><kbd>%</kbd> / <kbd>F9</kbd></dd></div></dl><p class="dialog-note">Multiplication and division come first. Percent divides the current number by 100.</p></dialog>
+</body>
+</html>
